@@ -57,7 +57,7 @@ class Options:
     @dataclass
     class Text:
         repetition_penalty: float = 1.2
-        temp: float = 0.7
+        temp: float = 1.0
         top_p: float = 0.9
         greedy: bool = False
 
@@ -77,7 +77,7 @@ class Options:
     max_gen_len: int = 4096
     seed: int | None = None
     txt: Text | bool = True
-    img: Image | bool = False
+    img: Image | bool = True
     extra_eos_tokens: list[int | str] = field(default_factory=lambda: ["<racm3:break>"])
 
     def __post_init__(self):
