@@ -237,6 +237,7 @@ class TransformerBlock(nn.Module):
         assert args.n_heads % model_parallel_size == 0
         assert n_kv_heads % model_parallel_size == 0
 
+        print(args)
         self.attention = Attention(
             model_parallel_size=model_parallel_size,
             dim=args.dim,

@@ -92,6 +92,7 @@ class ImageTokenizer:
         return img_toks
 
     def _pil_from_chw_tensor(self, chw_tensor: torch.Tensor) -> PIL.Image:
+
         # Ensure detachment and move tensor to CPU.
         detached_chw_tensor = chw_tensor.detach().cpu()
 
