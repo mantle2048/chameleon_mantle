@@ -117,9 +117,6 @@ class VocabTranslation:
 
     def convert_bpe2img(self, bpe_batch: torch.Tensor) -> torch.Tensor:
         bpe_tok, img_tok = self.bpe2img_search_tensors
-        print(f"bpe tok: {bpe_tok}")
-        print(f"img tok: {img_tok}")
-        print(f"bpe batch: {bpe_batch}")
         return img_tok[torch.searchsorted(bpe_tok, bpe_batch)]
 
     def convert_img2bp2(self, img_batch: torch.Tensor) -> torch.Tensor:
