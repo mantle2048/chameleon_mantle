@@ -22,24 +22,39 @@ def main():
     options.txt = False
 
     instructions = [
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
-        "Renaissance square of Stepanakert",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
+        "A polar bear standing on a drifting ice floe in the Arctic Ocean, with the Northern Lights in the sky.",
     ]
     batch_prompt_ui = []
     for instruction in instructions:
         batch_prompt_ui += [
             [
                 {"type": "text", "value": instruction},
-                # {"type": "sentinel", "value": "<END-OF-TURN>"}
+                {"type": "sentinel", "value": "<END-OF-TURN>"}
             ],
         ]
 
@@ -51,7 +66,8 @@ def main():
     images =  model.decode_image(image_tokens)
 
     for instruction, image in zip(instructions, images):
-        image_path = f"text2image/{instruction}-{uuid.uuid4()}.png"
+        subdir = instruction.split(' ')[0]
+        image_path = f"text2image/{subdir}-{uuid.uuid4()}.png"
         image.save(image_path)
         print(f"===========================" * 2)
         print(f"Save generated images to {image_path}")

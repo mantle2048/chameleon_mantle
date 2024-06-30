@@ -71,7 +71,11 @@ def main():
         # "What color is a polar bear’s fur? Show me a photograph of the polar bear in the wild."
         # "Please tell me how to make scrambled eggs inside the shell step by step. Explain each step with text and pictures."
         # "Use pictures and words to explain each step to make a traditional egg fried rice."
-        "Use pictures and words to explain each step to cook eggs."
+        # "Use pictures and words to explain each step to cook eggs."
+        # "Use pictures and words to explain each step to mount a unicycle."
+        # "Use pictures and words to explain each step to install a unicycle from parts."
+        # "Please use pictures and words to teach me several movements to stretch my leg muscles to avoid injury after a long run."
+        "Please introduce some delicious traditional Chinese food with pictures."
     ]
     batch_prompt_ui = []
     for instruction in instructions:
@@ -107,7 +111,7 @@ def main():
             # seg_tokens = seg_tokens.to("cpu")
             img: Image = model.decode_image(seg_tokens)[0]
             # pdb.set_trace()
-            image_path = f"interleaved/menu/{seg_id}.png"
+            image_path = f"interleaved/wikihow/{seg_id}.png"
             img.save(image_path)
             print(f"seg {seg_id}, image: {image_path}")
         else:
