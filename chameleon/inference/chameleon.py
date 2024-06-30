@@ -130,7 +130,7 @@ class TokenManager:
         return (
             [self.vocab.begin_image]
             + self.translation.convert_img2bp2(
-                self.image_tokenizer.img_tokens_from_pil(img)
+                self.image_tokenizer.img_tokens_from_pil(img)   # [0 : 8191], vqgan codebook ids
             ).tolist()
             + [self.vocab.end_image]
         )

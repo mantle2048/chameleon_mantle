@@ -80,22 +80,23 @@ class VocabTranslation:
         self._device = device
 
     @cached_property
-    def bpe2img(self) -> dict[int, int]:
-        img_tkn_chr_mapping = {chr(ord("A") + i): str(i) for i in range(10)}
+    def bpe2img(self) -> dict[int, int]:    # vocab id => codebook id, i.e. [4:8195] => [0:8191]
+        img_tkn_chr_mapping = {chr(ord("A") + i): str(i) for i in range(10)}    # A-J: 0-9
 
         def remap(old_name: str) -> str:
             return "".join(
-                img_tkn_chr_mapping.get(c, c) for c in old_name[len("IMGIMG") : -1]
+                img_tkn_chr_mapping.get(c, c) for c in old_name[len("IMGIMG") : -1] # last chr is 'Z'
             )
+            # e.g.: IMGIMGFDZ => FD => 53,
 
         return {
             tok: int(remap(self._vocab.val2name[tok]))
-            for tok in self._vocab.image_tokens
+            for tok in self._vocab.image_tokens # the token starts with 'IMGIMG', value: [4: 8195]
         }
 
     @cached_property
     def img2bpe(self) -> dict[int, int]:
-        return {v: k for k, v in self.bpe2img.items()}
+        return {v: k for k, v in self.bpe2img.items()}  # codebook id => vocab id, i.e. [0:8191] => [4:8191]
 
     @cached_property
     def bpe2img_search_tensors(self) -> tuple[torch.Tensor, torch.Tensor]:
@@ -116,6 +117,9 @@ class VocabTranslation:
 
     def convert_bpe2img(self, bpe_batch: torch.Tensor) -> torch.Tensor:
         bpe_tok, img_tok = self.bpe2img_search_tensors
+        print(f"bpe tok: {bpe_tok}")
+        print(f"img tok: {img_tok}")
+        print(f"bpe batch: {bpe_batch}")
         return img_tok[torch.searchsorted(bpe_tok, bpe_batch)]
 
     def convert_img2bp2(self, img_batch: torch.Tensor) -> torch.Tensor:

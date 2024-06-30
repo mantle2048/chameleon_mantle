@@ -6,3 +6,5 @@ __pycache__/
 text2image
 
 /outputs
+
+.vscode/

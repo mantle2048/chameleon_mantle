@@ -39,7 +39,7 @@ def main():
         batch_prompt_ui += [
             [
                 {"type": "text", "value": instruction},
-                {"type": "sentinel", "value": "<END-OF-TURN>"}
+                # {"type": "sentinel", "value": "<END-OF-TURN>"}
             ],
         ]
 
