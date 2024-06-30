@@ -20,7 +20,7 @@ def _convert(model_args: ModelArgs, consolidated_path: Path) -> Transformer:
     model = Transformer(model_args)
 
     transfer_results = model.load_state_dict(
-        torch.load(str(consolidated_path)),
+        torch.load(str(consolidated_path), map_location='cuda'),
         strict=False,
     )
 

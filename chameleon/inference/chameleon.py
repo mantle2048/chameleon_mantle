@@ -78,7 +78,6 @@ class Options:
     seed: int | None = None
     txt: Text | bool = True
     img: Image | bool = True
-    # extra_eos_tokens: list[int | str] = field(default_factory=lambda: ["<racm3:break>"])
     extra_eos_tokens: list[int | str] = field(default_factory=lambda: [])
 
     def __post_init__(self):
@@ -627,7 +626,6 @@ class ChameleonInferenceModel:
                 self.token_manager.tokens_from_ui(prompt_ui)
                 for prompt_ui in batch_prompt_ui
             ]
-        print(batch_input_ids)
 
         assert batch_input_ids
 

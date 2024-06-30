@@ -7,7 +7,7 @@ load_dotenv(override=True)
 
 ckpt_path = Path(os.getenv("CKPT_PATH", "./data"))
 
-model_7b_path = ckpt_path / "models" / "7b"
+model_7b_path = ckpt_path / "models" / "0629_5000"
 
 model_30b_path = ckpt_path / "models" / "30b"
 
